@@ -26,6 +26,7 @@ const App = () => {
 
   const [token, setToken] = useState('')
   const [tokenType, setTokenType] = useState(false)    // false = client credentials, true = implicit grant
+  const [expiresIn, setExpiresIn] = useState('')
   const [albums, setAlbums] = useState({listOfAlbums: []})
   const [albumInfo, setAlbumInfo] = useState({name: '', imageUrl: '', id: ''})
   const [tracks, setTracks] = useState({listOfTracks: []})
@@ -42,8 +43,12 @@ const App = () => {
       
       const res = getSpotifyAuthResponse(window.location.hash);
       console.log('token: ' + res.access_token)
+      
       setToken(res.access_token);
       setTokenType(true);
+      setExpiresIn(res.expires_in);
+
+      console.log('token expires in: ' + expiresIn + ' seconds')
 
       console.log('implicit grant authorization success');
 
@@ -72,7 +77,7 @@ const App = () => {
         
       })
     }
-  }, []);
+  }, [expiresIn]);
 
 
   
@@ -90,6 +95,9 @@ const App = () => {
       });
       
       console.log(albumRes.data.albums);
+    })
+    .catch(() => {
+      window.location = '/';
     })
   }
 

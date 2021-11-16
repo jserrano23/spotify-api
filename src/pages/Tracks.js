@@ -13,7 +13,7 @@ const Tracks = props => {
   const scopes = ['streaming', 'user-read-email', 'user-read-private', 'user-read-playback-state', 'user-modify-playback-state']
   const scopeParams = scopes.join('%20');
 
-  const AUTH_URL = `http://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=token&scope=${scopeParams}&show_dialogue=true`;
+  const AUTH_URL = `http://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=token&scope=${scopeParams}&show_dialog=true`;
 
   const playTrack = track => {
 
